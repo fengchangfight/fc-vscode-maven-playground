@@ -1,4 +1,4 @@
-package rabbitmq;
+package com.fcvscodemvn.rabbitmq;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
@@ -31,7 +31,8 @@ public class Worker {
                 channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
             }
         };
-        channel.basicConsume(TASK_QUEUE_NAME, false, deliverCallback, consumerTag -> { });
+        channel.basicConsume(TASK_QUEUE_NAME, false, deliverCallback, consumerTag -> {
+        });
     }
 
     private static void doWork(String task) {

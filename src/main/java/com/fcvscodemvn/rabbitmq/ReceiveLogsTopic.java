@@ -1,4 +1,4 @@
-package rabbitmq;
+package com.fcvscodemvn.rabbitmq;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
@@ -20,9 +20,9 @@ public class ReceiveLogsTopic {
         channel.exchangeDeclare(EXCHANGE_NAME, "topic");
         String queueName = channel.queueDeclare().getQueue();
 
-        argv= new String[1];
+        argv = new String[1];
 
-        argv[0]="anonymous.info";
+        argv[0] = "anonymous.info";
 
         if (argv.length < 1) {
             System.err.println("Usage: ReceiveLogsTopic [binding_key]...");
@@ -39,6 +39,7 @@ public class ReceiveLogsTopic {
             String message = new String(delivery.getBody(), "UTF-8");
             System.out.println(" [x] Received '" + delivery.getEnvelope().getRoutingKey() + "':'" + message + "'");
         };
-        channel.basicConsume(queueName, true, deliverCallback, consumerTag -> { });
+        channel.basicConsume(queueName, true, deliverCallback, consumerTag -> {
+        });
     }
 }

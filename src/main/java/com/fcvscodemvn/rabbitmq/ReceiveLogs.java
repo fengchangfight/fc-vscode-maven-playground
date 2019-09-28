@@ -1,4 +1,4 @@
-package rabbitmq;
+package com.fcvscodemvn.rabbitmq;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
@@ -24,6 +24,7 @@ public class ReceiveLogs {
             String message = new String(delivery.getBody(), "UTF-8");
             System.out.println(" [x] Received '" + message + "'");
         };
-        channel.basicConsume(queueName, true, deliverCallback, consumerTag -> { });
+        channel.basicConsume(queueName, true, deliverCallback, consumerTag -> {
+        });
     }
 }

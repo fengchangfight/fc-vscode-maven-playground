@@ -1,8 +1,9 @@
+package com.fcvscodemvn.serialize;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 
 class UserVo implements Serializable {
 
@@ -87,17 +88,16 @@ class UserVo implements Serializable {
 
     @Override
     public String toString() {
-        return "userId=[ " + userId + " ] userName=[ " + userName + " ] age=[ "
-                + age + " ] born=[ " + born + "] .";
+        return "userId=[ " + userId + " ] userName=[ " + userName + " ] age=[ " + age + " ] born=[ " + born + "] .";
     }
 
 }
-
 
 public class ObjectFileConvert {
 
     /**
      * 文件转化为Object
+     * 
      * @param fileName
      * @return byte[]
      */
@@ -133,6 +133,7 @@ public class ObjectFileConvert {
 
     /**
      * 把Object输出到文件
+     * 
      * @param obj
      * @param outputFile
      */
@@ -176,8 +177,7 @@ public class ObjectFileConvert {
         ObjectFileConvert.object2File(list, fileName);
         System.out.println("success write List<String> to file.");
 
-        List<String> tmpList = (List<String>) ObjectFileConvert
-                .file2Object(fileName);
+        List<String> tmpList = (List<String>) ObjectFileConvert.file2Object(fileName);
         for (String tmp : tmpList) {
             System.out.println(tmp);
         }

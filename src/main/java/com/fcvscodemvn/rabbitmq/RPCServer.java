@@ -1,4 +1,4 @@
-package rabbitmq;
+package com.fcvscodemvn.rabbitmq;
 
 import com.rabbitmq.client.*;
 

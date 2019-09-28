@@ -1,4 +1,4 @@
-package rabbitmq;
+package com.fcvscodemvn.rabbitmq;
 
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
@@ -42,10 +42,7 @@ public class RPCClient implements AutoCloseable {
         final String corrId = UUID.randomUUID().toString();
 
         String replyQueueName = channel.queueDeclare().getQueue();
-        AMQP.BasicProperties props = new AMQP.BasicProperties
-                .Builder()
-                .correlationId(corrId)
-                .replyTo(replyQueueName)
+        AMQP.BasicProperties props = new AMQP.BasicProperties.Builder().correlationId(corrId).replyTo(replyQueueName)
                 .build();
 
         channel.basicPublish("", requestQueueName, props, message.getBytes("UTF-8"));

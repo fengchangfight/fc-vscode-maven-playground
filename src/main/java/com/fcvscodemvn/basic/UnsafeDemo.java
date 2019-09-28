@@ -1,6 +1,9 @@
+package com.fcvscodemvn.basic;
+
 import sun.misc.Unsafe;
 
 import java.lang.reflect.Field;
+
 class InitializationOrdering {
     private long a;
 
@@ -14,7 +17,8 @@ class InitializationOrdering {
 }
 
 public class UnsafeDemo {
-    public static void main(String[] args) throws InterruptedException, NoSuchFieldException, IllegalAccessException, InstantiationException {
+    public static void main(String[] args)
+            throws InterruptedException, NoSuchFieldException, IllegalAccessException, InstantiationException {
         Field f = Unsafe.class.getDeclaredField("theUnsafe");
         f.setAccessible(true);
         Unsafe unsafe = (Unsafe) f.get(null);

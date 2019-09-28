@@ -1,4 +1,4 @@
-package com.fcvscodemvn.calc;
+package com.fcvscodemvn.fortesting;
 
 import static org.junit.Assert.assertEquals;
 

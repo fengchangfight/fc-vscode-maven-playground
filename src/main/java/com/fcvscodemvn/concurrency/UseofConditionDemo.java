@@ -1,3 +1,5 @@
+package com.fcvscodemvn.concurrency;
+
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -6,15 +8,15 @@ public class UseofConditionDemo {
     public static void main(String[] args) throws InterruptedException {
         ItemQueue itemQueue = new ItemQueue(10);
 
-        //Create a producer and a consumer.
+        // Create a producer and a consumer.
         Thread producer = new Producer(itemQueue);
         Thread consumer = new Consumer(itemQueue);
 
-        //Start both threads.
+        // Start both threads.
         producer.start();
         consumer.start();
 
-        //Wait for both threads to terminate.
+        // Wait for both threads to terminate.
         producer.join();
         consumer.join();
     }
@@ -39,7 +41,7 @@ public class UseofConditionDemo {
         public void add(Object item) throws InterruptedException {
             lock.lock();
 
-            while(current >= items.length){
+            while (current >= items.length) {
                 isFull.await();
             }
 
@@ -47,7 +49,7 @@ public class UseofConditionDemo {
             placeIndex = (placeIndex + 1) % items.length;
             ++current;
 
-            //Notify the consumer that there is data available.
+            // Notify the consumer that there is data available.
             isEmpty.signal();
             lock.unlock();
         }
@@ -57,14 +59,14 @@ public class UseofConditionDemo {
 
             lock.lock();
 
-            while(current <= 0) {
+            while (current <= 0) {
                 isEmpty.await();
             }
             item = items[removeIndex];
             removeIndex = (removeIndex + 1) % items.length;
             --current;
 
-            //Notify the producer that there is space available.
+            // Notify the producer that there is space available.
             isFull.signal();
             lock.unlock();
 
@@ -85,12 +87,11 @@ public class UseofConditionDemo {
 
         @Override
         public void run() {
-            String[] numbers =
-                    {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
+            String[] numbers = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" };
 
             try {
 
-                for(String number: numbers) {
+                for (String number : numbers) {
                     System.out.println("[Producer]: " + number);
                     queue.add(number);
                 }
@@ -117,10 +118,10 @@ public class UseofConditionDemo {
                     Object number = queue.remove();
                     System.out.println("[Consumer]: " + number);
 
-                    if(number == null) {
+                    if (number == null) {
                         return;
                     }
-                } while(!queue.isEmpty());
+                } while (!queue.isEmpty());
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
             }

@@ -1,4 +1,4 @@
-package rabbitmq;
+package com.fcvscodemvn.rabbitmq;
 
 import com.rabbitmq.client.BuiltinExchangeType;
 import com.rabbitmq.client.Channel;
@@ -12,8 +12,7 @@ public class EmitLogDirect {
     public static void main(String[] argv) throws Exception {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
-        try (Connection connection = factory.newConnection();
-             Channel channel = connection.createChannel()) {
+        try (Connection connection = factory.newConnection(); Channel channel = connection.createChannel()) {
             channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.DIRECT);
 
             String severity = getSeverity(argv);
@@ -25,14 +24,14 @@ public class EmitLogDirect {
     }
 
     private static String getSeverity(String[] strings) {
-        if(strings.length < 1){
+        if (strings.length < 1) {
             return "info";
         }
         return strings[0];
     }
 
     private static String getMessage(String[] strings) {
-        if (strings.length < 2){
+        if (strings.length < 2) {
             return "Hello World!";
         }
         return joinStrings(strings, " ", 1);

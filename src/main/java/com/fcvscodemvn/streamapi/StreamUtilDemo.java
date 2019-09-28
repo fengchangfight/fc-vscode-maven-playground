@@ -1,3 +1,5 @@
+package com.fcvscodemvn.streamapi;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,7 +14,7 @@ public class StreamUtilDemo {
     @Setter
     @Getter
     @NoArgsConstructor
-    static class InnerPerson{
+    static class InnerPerson {
         String name;
         Integer age;
 
@@ -23,12 +25,11 @@ public class StreamUtilDemo {
 
         @Override
         public String toString() {
-            return  name + " is " + age + "years old";
+            return name + " is " + age + "years old";
         }
     }
 
-
-    public static void main(String[] args){
+    public static void main(String[] args) {
         List<InnerPerson> people = new ArrayList<InnerPerson>();
 
         people.add(new InnerPerson("Sam", 22));
@@ -39,11 +40,9 @@ public class StreamUtilDemo {
         System.out.println(people);
 
         // sort
-        Comparator<InnerPerson> comparator
-                = Comparator.comparing(InnerPerson::getAge);
+        Comparator<InnerPerson> comparator = Comparator.comparing(InnerPerson::getAge);
 
-        List<InnerPerson> sortedResult = people.stream().sorted(comparator.reversed()).
-                collect(Collectors.toList());
+        List<InnerPerson> sortedResult = people.stream().sorted(comparator.reversed()).collect(Collectors.toList());
 
         System.out.println(sortedResult);
 
