@@ -1,3 +1,5 @@
+package com.fcvscodemvn.datastructure;
+
 import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Queue;
@@ -8,9 +10,9 @@ class Customer {
     private int id;
     private String name;
 
-    public Customer(int i, String n){
-        this.id=i;
-        this.name=n;
+    public Customer(int i, String n) {
+        this.id = i;
+        this.name = n;
     }
 
     public int getId() {
@@ -23,22 +25,21 @@ class Customer {
 
 }
 
-
 public class PriorityQueueDemo {
     public static void main(String[] args) {
 
-        //natural ordering example of priority queue
+        // natural ordering example of priority queue
         Queue<Integer> integerPriorityQueue = new PriorityQueue<>(7);
         Random rand = new Random();
-        for(int i=0;i<7;i++){
+        for (int i = 0; i < 7; i++) {
             integerPriorityQueue.add(new Integer(rand.nextInt(100)));
         }
-        for(int i=0;i<7;i++){
+        for (int i = 0; i < 7; i++) {
             Integer in = integerPriorityQueue.poll();
-            System.out.println("Processing Integer:"+in);
+            System.out.println("Processing Integer:" + in);
         }
 
-        //PriorityQueue example with Comparator
+        // PriorityQueue example with Comparator
         Queue<Customer> customerPriorityQueue = new PriorityQueue<>(7, idComparator);
         addDataToQueue(customerPriorityQueue);
 
@@ -46,8 +47,8 @@ public class PriorityQueueDemo {
 
     }
 
-    //Comparator anonymous class implementation
-    public static Comparator<Customer> idComparator = new Comparator<Customer>(){
+    // Comparator anonymous class implementation
+    public static Comparator<Customer> idComparator = new Comparator<Customer>() {
 
         @Override
         public int compare(Customer c1, Customer c2) {
@@ -55,24 +56,24 @@ public class PriorityQueueDemo {
         }
     };
 
-    //utility method to add random data to Queue
+    // utility method to add random data to Queue
     private static void addDataToQueue(Queue<Customer> customerPriorityQueue) {
         Random rand = new Random();
-        for(int i=0; i<7; i++){
+        for (int i = 0; i < 7; i++) {
             int id = rand.nextInt(100);
-            System.out.println("inserting customer: "+id);
-            customerPriorityQueue.add(new Customer(id, "Pankaj "+id));
+            System.out.println("inserting customer: " + id);
+            customerPriorityQueue.add(new Customer(id, "Pankaj " + id));
         }
     }
 
-    //utility method to poll data from queue
+    // utility method to poll data from queue
     private static void pollDataFromQueue(Queue<Customer> customerPriorityQueue) {
-        while(true){
+        while (true) {
             Customer cust = customerPriorityQueue.poll();
-            if(cust == null){
+            if (cust == null) {
                 break;
             }
-            System.out.println("Processing Customer with ID="+cust.getId());
+            System.out.println("Processing Customer with ID=" + cust.getId());
         }
     }
 }

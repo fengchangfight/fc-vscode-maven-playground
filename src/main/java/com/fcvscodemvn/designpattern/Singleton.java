@@ -1,3 +1,5 @@
+package com.fcvscodemvn.designpattern;
+
 import org.apache.commons.lang3.RandomUtils;
 
 import java.io.IOException;
@@ -21,10 +23,10 @@ class Singleton {
 
     private Singleton() throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
-        List<String> li = Arrays.asList("/tmp/chuang2.txt","/tmp/chuang.txt");
+        List<String> li = Arrays.asList("/tmp/chuang2.txt", "/tmp/chuang.txt");
         String fn = li.get(RandomUtils.nextInt(0, li.size()));
-        System.out.println("File name:"+fn);
-        Stream<String> stream = Files.lines( Paths.get(fn), StandardCharsets.UTF_8);
+        System.out.println("File name:" + fn);
+        Stream<String> stream = Files.lines(Paths.get(fn), StandardCharsets.UTF_8);
 
         stream.forEach(s -> contentBuilder.append(s).append("\n"));
 
@@ -38,7 +40,7 @@ class Singleton {
             try {
                 instance = new Singleton();
             } catch (IOException e) {
-               throw new RuntimeException("what");
+                throw new RuntimeException("what");
             }
         }
     }

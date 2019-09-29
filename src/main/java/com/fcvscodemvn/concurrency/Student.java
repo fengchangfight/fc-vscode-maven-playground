@@ -1,3 +1,5 @@
+package com.fcvscodemvn.concurrency;
+
 import lombok.Getter;
 import lombok.Setter;
 

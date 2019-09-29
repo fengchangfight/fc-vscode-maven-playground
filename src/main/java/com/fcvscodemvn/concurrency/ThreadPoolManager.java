@@ -1,3 +1,5 @@
+package com.fcvscodemvn.concurrency;
+
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -11,7 +13,6 @@ import java.util.concurrent.TimeUnit;
 public final class ThreadPoolManager {
 
     private static ThreadPoolManager sThreadPoolManager = new ThreadPoolManager();
-
 
     private static final int SIZE_CORE_POOL = 3;
 

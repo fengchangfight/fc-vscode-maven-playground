@@ -1,3 +1,5 @@
+package com.fcvscodemvn.dynamicproxy;
+
 import net.openhft.compiler.CachedCompiler;
 
 /**
@@ -7,29 +9,21 @@ import net.openhft.compiler.CachedCompiler;
 public class DynamicJavaClassLoading {
 
     private final static String className = "test.MyClass";
-    private final static String addingStrategy = "package test;\n" +
-            "import test.DynamicJavaClassLoading.Strategy;\n" +
-            "public class MyClass implements Strategy {\n" +
-            "    public int compute(int a, int b) {\n" +
-            "        return a+b;\n" +
-            "    }\n" +
-            "}\n";
+    private final static String addingStrategy = "package test;\n" + "import test.DynamicJavaClassLoading.Strategy;\n"
+            + "public class MyClass implements Strategy {\n" + "    public int compute(int a, int b) {\n"
+            + "        return a+b;\n" + "    }\n" + "}\n";
 
-    private final static String subtractingStrategy = "package test;\n" +
-            "import test.DynamicJavaClassLoading.Strategy;\n" +
-            "public class MyClass implements Strategy {\n" +
-            "    public int compute(int a, int b) {\n" +
-            "        return a-b;\n" +
-            "    }\n" +
-            "}\n";
+    private final static String subtractingStrategy = "package test;\n"
+            + "import test.DynamicJavaClassLoading.Strategy;\n" + "public class MyClass implements Strategy {\n"
+            + "    public int compute(int a, int b) {\n" + "        return a-b;\n" + "    }\n" + "}\n";
 
     public static void main(String[] args) throws Exception {
         StrategyProxy strategy = new StrategyProxy();
 
-        //Thread calling the strategy once a second
+        // Thread calling the strategy once a second
         Thread t = new Thread(() -> {
             while (true) {
-                System.out.println(strategy.compute(10,20));
+                System.out.println(strategy.compute(10, 20));
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -62,19 +56,19 @@ public class DynamicJavaClassLoading {
         }
     }
 
-    public interface Strategy{
+    public interface Strategy {
         int compute(int a, int b);
     }
 
-    public static class StrategyProxy implements Strategy{
+    public static class StrategyProxy implements Strategy {
         private volatile Strategy underlying;
 
-        public void setStratgey(Strategy underlying){
+        public void setStratgey(Strategy underlying) {
             this.underlying = underlying;
         }
 
         @Override
-        public int compute(int a, int b){
+        public int compute(int a, int b) {
             Strategy underlying = this.underlying;
             return underlying == null ? Integer.MIN_VALUE : underlying.compute(a, b);
         }
