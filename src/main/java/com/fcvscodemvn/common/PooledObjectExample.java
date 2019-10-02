@@ -4,11 +4,10 @@ import org.apache.commons.pool2.PooledObject;
 
 import redis.clients.jedis.Jedis;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class PooledObjectExample {
-    public static final Logger logger = LoggerFactory.getLogger("PooledObjectExample");
 
     public void destroyObject(PooledObject<Jedis> p) throws Exception {
         final Jedis jedis = p.getObject();
@@ -17,16 +16,16 @@ public class PooledObjectExample {
                 try {
                     jedis.quit();
                 } catch (Exception e) {
-                    logger.warn(e.getMessage());
+                    log.warn(e.getMessage());
                 }
                 jedis.disconnect();
             } catch (Exception e) {
-                logger.warn(e.getMessage());
+                log.warn(e.getMessage());
             }
         }
     }
 
     public static void main(String[] args) {
-        logger.info("Hello World2");
+        log.info("Hello World4");
     }
 }
