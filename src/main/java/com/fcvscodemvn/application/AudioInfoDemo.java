@@ -18,7 +18,7 @@ public class AudioInfoDemo {
     public static void main(String[] args) throws EncoderException {
         MultimediaInfo info = getMediaInfo("/tmp/10s_sample.mp3");
         // 得到时间
-        long time = info.getDuration();
+        // long time = info.getDuration();
         System.out.println(info.getDuration());
     }
 }
