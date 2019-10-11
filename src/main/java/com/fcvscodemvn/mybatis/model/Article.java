@@ -1,14 +1,15 @@
-package com.fcvscodemvn.mybatisplayground.dao;
+package com.fcvscodemvn.mybatis.model;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.Getter;
 
 @Getter
 @Setter
 @NoArgsConstructor
-public class Blog {
+public class Article {
     private Long id;
+    private String url;
     private String title;
-    private String author;
+    private Long authorId;
 }
