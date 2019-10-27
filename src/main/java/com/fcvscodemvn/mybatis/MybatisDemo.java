@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import com.fcvscodemvn.mybatis.mapper.AuthorMapper;
+import com.fcvscodemvn.mybatis.model.Article;
 import com.fcvscodemvn.mybatis.model.Author;
 
 import org.apache.ibatis.io.Resources;
@@ -32,6 +33,21 @@ public class MybatisDemo {
         try (SqlSession session = sqlSessionFactory.openSession()) {
             AuthorMapper mapper = session.getMapper(AuthorMapper.class);
             Author author = mapper.findById(1L);
+            String url = "www.jingjing.com";
+            String title = "What you eat";
+            Article article = new Article(url, title, author);
+            System.out.println("before doing insert");
+
+            mapper.insert(article);
+            Long returnedId1 = article.getId();
+            mapper.insert(article);
+            Long returnedId2 = article.getId();
+
+            session.commit();
+
+            System.out.println(returnedId1);
+            System.out.println(returnedId2);
+
             System.out.println(author);
         }
     }

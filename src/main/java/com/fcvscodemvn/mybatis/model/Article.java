@@ -11,5 +11,12 @@ public class Article {
     private Long id;
     private String url;
     private String title;
-    private Long authorId;
+    private Author author;
+
+    public Article(String url, String title, Author author) {
+        this.url = url;
+        this.title = title;
+        this.author = author;
+    }
+
 }
