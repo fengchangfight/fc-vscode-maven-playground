@@ -7,4 +7,6 @@ public interface AuthorMapper {
     Author findById(Long id);
 
     Long insert(Article article);
+
+    Long insert2(Article article);
 }

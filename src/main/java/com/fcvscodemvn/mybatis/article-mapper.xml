@@ -16,5 +16,14 @@
     insert into article (url, title, author) values (
       #{url}, #{title}, #{author.id}
     )
-</insert>
+  </insert>
+  <insert id="insert2" parameterType="com.fcvscodemvn.mybatis.model.Article">
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER">
+        SELECT LAST_INSERT_ID() AS id 
+    </selectKey>
+    insert into article (url, title, author) values (
+    #{url}, #{title}, #{author.id}
+  )
+  </insert>
+
 </mapper>

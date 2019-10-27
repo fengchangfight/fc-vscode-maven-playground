@@ -34,19 +34,15 @@ public class MybatisDemo {
             AuthorMapper mapper = session.getMapper(AuthorMapper.class);
             Author author = mapper.findById(1L);
             String url = "www.jingjing.com";
-            String title = "What you eat";
+            String title = "What you drink";
             Article article = new Article(url, title, author);
             System.out.println("before doing insert");
-
-            mapper.insert(article);
-            Long returnedId1 = article.getId();
-            mapper.insert(article);
-            Long returnedId2 = article.getId();
-
+            mapper.insert2(article);
             session.commit();
 
+            Long returnedId1 = article.getId();
+
             System.out.println(returnedId1);
-            System.out.println(returnedId2);
 
             System.out.println(author);
         }
