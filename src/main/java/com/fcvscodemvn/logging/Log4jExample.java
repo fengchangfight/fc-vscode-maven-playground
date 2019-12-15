@@ -8,6 +8,9 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.*;
 import java.sql.SQLException;
 
+/**
+ * @@author fengchang
+ */
 @Slf4j
 public class Log4jExample {
 
